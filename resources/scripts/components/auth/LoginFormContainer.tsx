@@ -50,11 +50,11 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
             &copy; 2015 - {(new Date()).getFullYear()}&nbsp;
             <a
                 rel={'noopener nofollow noreferrer'}
-                href={'https://pterodactyl.io'}
+                href={'https://thepremiumhosting.com'}
                 target={'_blank'}
                 css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
             >
-                Pterodactyl Software
+                The Premium Hosting
             </a>
         </p>
     </Container>
