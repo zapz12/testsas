@@ -24,7 +24,7 @@ export default () => {
                 onDismissed={() => setVisible(false)}
             />
             }
-            <div className={'navigation-link'} onClick={() => setVisible(true)}>
+            <div id="search" className={'navigation-link'} onClick={() => setVisible(true)}>
                 <FontAwesomeIcon icon={faSearch}/>
             </div>
         </>

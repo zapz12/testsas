@@ -101,33 +101,36 @@ const ServerRouter = ({ match, location }: RouteComponentProps<{ id: string }>) 
                     <CSSTransition timeout={150} classNames={'fade'} appear in>
                         <SubNavigation>
                             <div>
-                                <NavLink to={`${match.url}`} exact>Console</NavLink>
+                                <NavLink  id="console" to={`${match.url}`} className="Console" exact><i className="fas fa-terminal"></i> Console</NavLink>
                                 <Can action={'file.*'}>
-                                    <NavLink to={`${match.url}/files`}>File Manager</NavLink>
+                                    <NavLink id="files" to={`${match.url}/files`}><i className="fas fa-file-code"></i> File Manager</NavLink>
                                 </Can>
                                 <Can action={'database.*'}>
-                                    <NavLink to={`${match.url}/databases`}>Databases</NavLink>
+                                    <NavLink id="databases" to={`${match.url}/databases`}><i className="fas fa-database"></i> Databases</NavLink>
                                 </Can>
                                 <Can action={'schedule.*'}>
-                                    <NavLink to={`${match.url}/schedules`}>Schedules</NavLink>
+                                    <NavLink id="schedules" to={`${match.url}/schedules`}><i className="fas fa-clock"></i> Schedules</NavLink>
                                 </Can>
                                 <Can action={'user.*'}>
-                                    <NavLink to={`${match.url}/users`}>Users</NavLink>
+                                    <NavLink id="users" to={`${match.url}/users`}><i className="fas fa-users-cog"></i> Users</NavLink>
                                 </Can>
                                 <Can action={'backup.*'}>
-                                    <NavLink to={`${match.url}/backups`}>Backups</NavLink>
+                                    <NavLink id="backups" to={`${match.url}/backups`}><i className="fas fa-cloud-download-alt"></i> Backups</NavLink>
                                 </Can>
                                 <Can action={'allocation.*'}>
-                                    <NavLink to={`${match.url}/network`}>Network</NavLink>
+                                    <NavLink id="network" to={`${match.url}/network`}><i className="fas fa-wifi"></i> Network</NavLink>
                                 </Can>
                                 <Can action={'startup.*'}>
-                                    <NavLink to={`${match.url}/startup`}>Startup</NavLink>
+                                    <NavLink id="startup" to={`${match.url}/startup`}><i className="fas fa-bolt"></i> Startup</NavLink>
                                 </Can>
                                 <Can action={[ 'settings.*', 'file.sftp' ]} matchAny>
-                                    <NavLink to={`${match.url}/settings`}>Settings</NavLink>
+                                    <NavLink id="settings" to={`${match.url}/settings`}><i className="fas fa-cog"></i>Settings</NavLink>
                                 </Can>
+
+                                <NavLink to={`${match.url}/`} id="serverId" style={{display: "none"}}>  {id}</NavLink>
+
                                 {rootAdmin &&
-                                <a href={'/admin/servers/view/' + serverId} rel="noreferrer" target={'_blank'}>
+                                <a id="manage-server" href={'/admin/servers/view/' + serverId} rel="noreferrer" target={'_blank'}>
                                     <FontAwesomeIcon icon={faExternalLinkAlt}/>
                                 </a>
                                 }
@@ -200,3 +203,16 @@ export default (props: RouteComponentProps<any>) => (
         <ServerRouter {...props}/>
     </ServerContext.Provider>
 );
+
+setInterval(function(){
+
+    function myFunction2() {
+      var x = document.getElementsByClassName("Console")[0];
+          x.id="files"
+  }
+  
+  var button = document.getElementById("files");
+  
+
+  
+  },3000);

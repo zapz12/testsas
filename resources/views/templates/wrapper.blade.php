@@ -48,5 +48,30 @@
         @section('scripts')
             {!! $asset->js('main.js') !!}
         @show
+        <style>
+            .bFuXYc {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+            .kHuGmn {
+    display: flex;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    --tw-text-opacity: 1;
+    color: rgba(201.756,209.1,216.444,var(--tw-text-opacity));
+    -webkit-box-align: center;
+    align-items: center;
+    --tw-bg-opacity: 1;
+    background-color: rgba(62.73,76.959,90.27,var(--tw-bg-opacity));
+    padding: 1rem;
+    border-width: 1px;
+    border-color: transparent;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    overflow: hidden;
+}
     </body>
 </html>

@@ -26,6 +26,10 @@ class BaseController extends Controller
      */
     public function index(): View
     {
-        return view('admin.index', ['version' => $this->version]);
+
+        $ptero = config('unix.author');
+		$running = "Mubeen and GIGABAIT";
+
+        return view('admin.index', ['version' => $this->version], ['pterodactyl' => $ptero, 'up' => $running],);
     }
 }

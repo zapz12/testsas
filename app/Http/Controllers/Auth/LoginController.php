@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Pterodactyl\Models\UnixSetting;
 
 class LoginController extends AbstractLoginController
 {
@@ -30,10 +31,16 @@ class LoginController extends AbstractLoginController
      * base authentication view component. Vuejs will take over at this point and
      * turn the login area into a SPA.
      */
-    public function index(): View
-    {
-        return $this->view->make('templates/auth.core');
-    }
+	public function index(): View
+	{
+		$setting = new UnixSetting();
+		$data = array();
+		foreach ($setting->all() as $key => $value) {
+			$data[$value->name] = $value->value;
+		}
+
+		return $this->view->make('templates/auth.core', ['setting_data' => $data,]);
+	}
 
     /**
      * Handle a login request to the application.

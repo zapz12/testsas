@@ -78,7 +78,7 @@ export default () => {
                         <FontAwesomeIcon icon={faCogs}/>
                     </a>
                     }
-                    <button onClick={onTriggerLogout}>
+                    <button id="logout" onClick={onTriggerLogout}>
                         <FontAwesomeIcon icon={faSignOutAlt}/>
                     </button>
                 </RightNavigation>

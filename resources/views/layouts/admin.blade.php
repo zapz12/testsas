@@ -20,6 +20,8 @@
         <link rel="shortcut icon" href="/favicons/favicon.ico">
         <meta name="msapplication-config" content="/favicons/browserconfig.xml">
         <meta name="theme-color" content="#0e4688">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
         @include('layouts.scripts')
 
@@ -127,6 +129,11 @@
                                 <i class="fa fa-th-large"></i> <span>Nests</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.unix') ?: 'active' }}">
+                            <a href="{{ route('admin.unix') }}">
+                            <i class="fas fa-paint-brush"></i> <span>Unix</span>
+                            </a>
+                        </li>
                     </ul>
                 </section>
             </aside>
@@ -185,7 +192,6 @@
                 <script>
                     $('#logoutButton').on('click', function (event) {
                         event.preventDefault();
-
                         var that = this;
                         swal({
                             title: 'Do you want to log out?',

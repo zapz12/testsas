@@ -4,7 +4,7 @@ import { faEthernet, faHdd, faMemory, faMicrochip, faServer } from '@fortawesome
 import { Link } from 'react-router-dom';
 import { Server } from '@/api/server/getServer';
 import getServerResourceUsage, { ServerPowerState, ServerStats } from '@/api/server/getServerResourceUsage';
-import { bytesToHuman, megabytesToHuman, formatIp } from '@/helpers';
+import { bytesToHuman, megabytesToHuman } from '@/helpers';
 import tw from 'twin.macro';
 import GreyRowBox from '@/components/elements/GreyRowBox';
 import Spinner from '@/components/elements/Spinner';
@@ -91,18 +91,6 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     }
                 </div>
             </div>
-            <div css={tw`hidden lg:col-span-2 lg:flex ml-4 justify-end h-full`}>
-                <FontAwesomeIcon icon={faEthernet} css={tw`text-neutral-500`}/>
-                <p css={tw`text-sm text-neutral-400 ml-2`}>
-                    {
-                        server.allocations.filter(alloc => alloc.isDefault).map(allocation => (
-                            <React.Fragment key={allocation.ip + allocation.port.toString()}>
-                                {allocation.alias || formatIp(allocation.ip)}:{allocation.port}
-                            </React.Fragment>
-                        ))
-                    }
-                </p>
-            </div>
             <div css={tw`hidden col-span-7 lg:col-span-4 sm:flex items-baseline justify-center`}>
                 {(!stats || isSuspended) ?
                     isSuspended ?
@@ -131,14 +119,27 @@ export default ({ server, className }: { server: Server; className?: string }) =
                             <Spinner size={'small'}/>
                     :
                     <React.Fragment>
+                                    <div css={tw`hidden lg:col-span-2 lg:flex ml-4 justify-end h-full`}>
+                <FontAwesomeIcon icon={faEthernet} css={tw`text-neutral-500`}/>
+                <p css={tw`text-sm text-neutral-400 ml-2`}>
+                    {
+                        server.allocations.filter(alloc => alloc.isDefault).map(allocation => (
+                            <React.Fragment key={allocation.ip + allocation.port.toString()}>
+                                {allocation.alias || allocation.ip}:{allocation.port}
+                            </React.Fragment>
+                        ))
+                    }
+					</p>
+				</div>
+                        
                         <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon icon={faMicrochip} $alarm={alarms.cpu}/>
-                                <IconDescription $alarm={alarms.cpu}>
-                                    {stats.cpuUsagePercent.toFixed(2)} %
-                                </IconDescription>
-                            </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {cpuLimit}</p>
+                          <div css={tw`flex justify-center`}>
+                            <Icon icon={faMicrochip} $alarm={alarms.cpu}/>
+                            <IconDescription $alarm={alarms.cpu}>
+                                {stats.cpuUsagePercent.toFixed(2)} %
+                            </IconDescription>
+                        </div>
+                        <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {cpuLimit}</p>
                         </div>
                         <div css={tw`flex-1 ml-4 sm:block hidden`}>
                             <div css={tw`flex justify-center`}>
